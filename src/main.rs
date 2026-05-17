@@ -1,3 +1,4 @@
+
 #[derive(Debug)]
 enum Color {
     Rgb(u8, u8, u8),
@@ -71,7 +72,6 @@ fn main() {
 
     let max_rect = rect.max(rect2);
     println!("Max Rectangle -> ({}, {})", max_rect.width, max_rect.height);
-    
 
     println!("Area of max rectangle -> {}", max_rect.area());
 
@@ -80,19 +80,42 @@ fn main() {
     let water = Color::Hsl(100, 100, 100);
     let earth = Color::Cmyk(100, 100, 100, 100);
     let sky = Color::Gray(100);
-    println!("Cloud -> {:?}", cloud);
-    println!("Sky -> {:?}", sky);
-    println!("Grass -> {:?}", grass);
-    println!("Water -> {:?}", water);
-    println!("Earth -> {:?}", earth);
-    println!("Sky -> {:?}", sky);
 
-    println!("Cloud -> {:?}", match cloud {
-        Color::Rgb(r, g, b) => format!("RGB({r}, {g}, {b})"),
-        Color::Hsv(h, s, v) => format!("HSV({h}, {s}, {v})"),
-        Color::Hsl(h, s, l) => format!("HSL({h}, {s}, {l})"),
-        Color::Cmyk(c, m, y, k) => format!("CMYK({c}, {m}, {y}, {k})"),
-        Color::Gray(g) => format!("Gray({g})"),
-    });
+    let entities: Vec<Color> = vec![cloud, grass, water, earth, sky];
+
+    for entity in entities {
+        println!(
+            "entity name -> {:?}",
+            match entity {
+                Color::Rgb(r, g, b) => format!("RGB({r}, {g}, {b})"),
+                Color::Hsv(h, s, v) => format!("HSV({h}, {s}, {v})"),
+                Color::Hsl(h, s, l) => format!("HSL({h}, {s}, {l})"),
+                Color::Cmyk(c, m, y, k) => format!("CMYK({c}, {m}, {y}, {k})"),
+                Color::Gray(g) => format!("Gray({g})"),
+            }
+        );
+    }
+
+
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    let b = &[2, 3];
+    
+    println!("slice: {:?}", slice);
+    println!("b: {:?}", b);
+    println!("slice == b: {}", slice == b);
+    assert_eq!(slice, b);
+
+    let a_string = String::from("hello");
+    let s_slice = &a_string[1..3];
+    let b_string = String::from("el");
+
+    println!("s_slice: {:?}", s_slice);
+    println!("b_string: {:?}", b_string);   
+
+
+    assert_eq!(s_slice, b_string);
+
+
 
 }
